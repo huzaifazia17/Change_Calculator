@@ -5,20 +5,27 @@ using namespace std;
 
 int main()
 {
-	double num, decimalValue, tonnie, loonie, quarters, dime, nickle;
+	double num, decimalValue, toonie, loonie, quarters, dime, nickle, penny;
 	int num_int;
+
 
 	cout << "This program converts a sum of currency into the highest available denominations in terms of coins" << endl;
 	cout << "Enter an amount:"<< endl;
 	cin >> num;
 
-	num_int = (int)num; // to convert double num to int
+	while (num < 0) {
+		cout << "Enter a positive amount:" << endl;
+		cin >> num;
+	}
+
+	num += 0.005;
+	num_int  = (int)num; 
 	decimalValue = num - num_int;
-	tonnie = num_int / 2;
+	toonie = num_int / 2;
 	num_int %= 2;
 	loonie = num_int;
 
-	num_int = decimalValue * 100; 
+	num_int = decimalValue * 100;
 
 	quarters = num_int / 25;
 	num_int %= 25;
@@ -29,12 +36,16 @@ int main()
 	nickle = num_int / 5;
 	num_int %= 5;
 
+	if (num_int == 0 && num_int % 2 != 0) {
+		num_int -= 1;
+	}
+
 
 	cout << "Conversion to coins:-" << endl;
 
-	if (tonnie != 0)
+	if (toonie != 0)
 	{
-		cout <<  tonnie << "\tToonies ($2)" << endl;
+		cout <<  toonie << "\tToonies ($2)" << endl;
 	}
 	if (loonie != 0)
 	{
@@ -57,9 +68,9 @@ int main()
 
 	if (num_int != 0)
 	{
-		cout << num_int + 1 << "\tPennies ($0.01)" << endl;
+			cout << num_int  << "\tPennies ($0.01)" << endl;
+		
 	}
-
-
+	
 }
 
